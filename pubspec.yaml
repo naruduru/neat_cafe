@@ -89,3 +89,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: NanumGothic
+      fonts:
+        - asset: fonts/NanumGothic-Regular.ttf
+        - asset: fonts/NanumGothic-Bold.ttf
+          weight: 700
+    - family: DoHyeon
+      fonts:
+        - asset: fonts/DoHyeon-Regular.ttf

@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   iconSize: 25.0,
                   color: Colors.white,
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Search()));
+                    Navigator.of(context).push(_createRoute(const Search()));
                   },
                 ),
                 IconButton(
@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   iconSize: 25.0,
                   color: Colors.white,
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const PersonAdd()));
+                    Navigator.of(context).push(_createRoute(const PersonAdd()));
                   },
                 ),
                 IconButton(
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   iconSize: 25.0,
                   color: Colors.white,
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Chat()));
+                    Navigator.of(context).push(_createRoute(const Chat()));
                   },
                 ),
                 IconButton(
@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   iconSize: 25.0,
                   color: Colors.white,
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Noti()));
+                    Navigator.of(context).push(_createRoute(const Noti()));
                   },
                 ),
                 IconButton(
@@ -96,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   iconSize: 25.0,
                   color: Colors.white,
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Edit()));
+                    Navigator.of(context).push(_createRoute(const Edit()));
                   },
                 ),
               ],
@@ -106,7 +106,23 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
 
-  void _onItemTapped(int index) {
-  }
+Route _createRoute(Widget pageWidget) {
+  return PageRouteBuilder(
+    transitionDuration: const Duration(milliseconds: 300),
+    pageBuilder: (context, animation, secondaryAnimation) => pageWidget,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = const Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }

@@ -118,52 +118,61 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ],
             centerTitle: true,
             pinned: true,
-            expandedHeight: 150.0,
+            expandedHeight: 160.0,
             title: _MyAppBarTitle(),
             flexibleSpace: _MyAppSpace(),
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(35),
-              child: Container(
-                alignment: Alignment.centerLeft,
-                color: Colors.black,
-                child: TabBar(
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  indicatorColor: Colors.white,
-                  indicator: const UnderlineTabIndicator(
-                    borderSide: BorderSide(
-                      width: 4,
-                      color: Colors.white,
+              child: Stack(children: [
+                Container(
+                  height: 32,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 1, color: Color(0xff767676)),
                     ),
-                    insets: EdgeInsets.only(
-                      left: 15,
-                      right: 15
-                    ),
+                    color: Color(0xff2b2b2b),
                   ),
-                  labelStyle: const TextStyle(fontSize: 12.0),
-                  isScrollable: true,
-                  labelPadding: const EdgeInsets.only(left: 0, right: 0),
-                  tabs: [
-                    Container(
-                      width: 80,
-                      height: 30.0,
-                      color: Colors.black,
-                      child: const Tab(text: '전체글'),
-                    ),
-                    Container(
-                      width: 80,
-                      height: 30.0,
-                      color: Colors.black,
-                      child: const Tab(text: '즐겨찾기'),
-                    ),
-                    Container(
-                      width: 80,
-                      height: 30.0,
-                      color: Colors.black,
-                      child: const Tab(text: '전체공지'),
-                    ),
-                  ]
+                  alignment: Alignment.centerLeft,
                 ),
-              ),
+                TabBar(
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    indicatorColor: Colors.white,
+                    indicator: const UnderlineTabIndicator(
+                        borderSide: BorderSide(
+                          width: 5,
+                          color: Colors.white,
+                        ),
+                        insets: EdgeInsets.only(
+                          left: 15,
+                          right: 15
+                        ),
+                      ),
+                      labelStyle: const TextStyle(fontSize: 12.0),
+                      isScrollable: true,
+                      labelPadding: const EdgeInsets.only(left: 0, right: 0),
+                      tabs: [
+                        Container(
+                          width: 80,
+                          height: 30.0,
+                          color: const Color(0xff2b2b2b),
+                          child: const Tab(text: '전체글'),
+                        ),
+                        Container(
+                          width: 80,
+                          height: 30.0,
+                          color: const Color(0xff2b2b2b),
+                          child: const Tab(text: '즐겨찾기'),
+                        ),
+                        Container(
+                          width: 80,
+                          height: 30.0,
+                          color: const Color(0xff2b2b2b),
+                          child: const Tab(text: '전체공지'),
+                        ),
+                      ]
+                  ),
+                ],
+                ),
             ),
           ),
           buildList()
@@ -173,13 +182,57 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   buildList() {
-    return SliverList(delegate: SliverChildBuilderDelegate(
-            (context, index) => ListTile(
-          contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
-          dense:true,
-          title: Text(entries[index]),
-          subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 12,),),
-        ), childCount: 40)
+    return SliverList(delegate: SliverChildBuilderDelegate((context, index) =>
+        Container(
+          color: const Color(0xff767676),
+          child: Row(
+            children: [
+              Container(
+                width: 20,
+                height: 81,
+                color: const Color(0xff2b2b2b),
+              ),
+              Expanded(
+                child: Container(
+                  height: 80,
+                  color: const Color(0xff2b2b2b),
+                  margin: const EdgeInsets.only(bottom: 1),
+                  child: ListTile(
+                    dense: true,
+                    contentPadding: const EdgeInsets.all(0),
+                    title: Text(entries[index],
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontFamily: 'NanumGothic',
+                      ),
+                    ),
+                    subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 11,color: Colors.white70,fontFamily: 'NanumGothic',),),
+                    trailing: Container(
+                      width: 30,
+                      color: Colors.grey,
+                      child: Padding(
+                        padding: const EdgeInsets.all(0),
+                        child: Column(
+                          children: const [
+                            Text('1'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 20,
+                height: 81,
+                color: const Color(0xff2b2b2b),
+              ),
+            ],
+          ),
+        ),
+        childCount: 40
+      ),
     );
   }
 
@@ -218,7 +271,7 @@ class _MyAppSpace extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      top: 60,
+                      top: 80,
                       left: 10,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -247,14 +300,16 @@ class _MyAppSpace extends StatelessWidget {
                                       color: Colors.white,
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
-                                      height: 1.0
+                                      height: 1.0,
+                                      fontFamily: 'NanumGothic',
                                   ),
                                 ),
                                 SizedBox(height: 3,),
                                 Text("멤버 14명",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 10,
+                                    fontSize: 11,
+                                    fontFamily: 'NanumGothic',
                                   ),
                                 ),
                               ],
@@ -289,7 +344,10 @@ class _MyAppBarTitle extends StatelessWidget {
 
         return Opacity(
           opacity: opacity,
-          child: const Text('NS')
+          child: const Text('NEAT-SOFT', style: TextStyle(
+            fontSize: 15,
+            fontFamily: 'NanumGothic',
+          ),)
         );
       },
     );
