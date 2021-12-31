@@ -95,6 +95,49 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     '오니파파파  14:14  조회4',
   ];
 
+  final List<String> imageEntries = <String>[
+    'image1.png',
+    'image2.png',
+    'image3.png',
+    'image4.png',
+    'image5.png',
+    'image1.png',
+    'image2.png',
+    'image3.png',
+    'image4.png',
+    'image5.png',
+    'image1.png',
+    'image2.png',
+    'image3.png',
+    'image4.png',
+    'image5.png',
+    'image1.png',
+    'image2.png',
+    'image3.png',
+    'image4.png',
+    'image5.png',
+    'image1.png',
+    'image2.png',
+    'image3.png',
+    'image4.png',
+    'image5.png',
+    'image1.png',
+    'image2.png',
+    'image3.png',
+    'image4.png',
+    'image5.png',
+    'image1.png',
+    'image2.png',
+    'image3.png',
+    'image4.png',
+    'image5.png',
+    'image1.png',
+    'image2.png',
+    'image3.png',
+    'image4.png',
+    'image5.png',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -184,6 +227,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   buildList() {
     return SliverList(delegate: SliverChildBuilderDelegate((context, index) =>
         Container(
+          height: 80,
           color: const Color(0xff767676),
           child: Row(
             children: [
@@ -194,35 +238,124 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               ),
               Expanded(
                 child: Container(
-                  height: 80,
-                  color: const Color(0xff2b2b2b),
-                  margin: const EdgeInsets.only(bottom: 1),
-                  child: ListTile(
-                    dense: true,
-                    contentPadding: const EdgeInsets.all(0),
-                    title: Text(entries[index],
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontFamily: 'NanumGothic',
-                      ),
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 1, color: Color(0xff767676)),
                     ),
-                    subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 11,color: Colors.white70,fontFamily: 'NanumGothic',),),
-                    trailing: Container(
-                      width: 30,
-                      color: Colors.grey,
-                      child: Padding(
-                        padding: const EdgeInsets.all(0),
+                    color: Color(0xff2b2b2b),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10, top:20, right: 10, bottom: 20),
+                          child: Column(
+                            crossAxisAlignment : CrossAxisAlignment.start,
+                            children: [
+                              Text(entries[index],
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: 'NanumGothic',
+                                ),
+                              ),
+                              const SizedBox(height: 10,),
+                              Text(subEntries[index],
+                                style: const TextStyle(
+                                  fontSize: 11,
+                                  color: Colors.white70,
+                                  fontFamily: 'NanumGothic',
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0),
+                        child: Image.asset('images/' + imageEntries[index], width: 60, height: 60,fit: BoxFit.cover,),
+                      ),
+                      const SizedBox(width: 5,),
+                      Container(
+                        width: 40.0,
+                        height: 60.0,
+                        decoration: const BoxDecoration(
+                          color: Color.fromRGBO(77, 77, 77, 1.0),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5.0), // radius
+                          ),
+                        ),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
-                            Text('1'),
+                            Text('0',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontFamily: 'NanumGothic',
+                              ),
+                            ),
+                            SizedBox(height: 2,),
+                            Text('댓글',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white70,
+                                // fontWeight: FontWeight.bold,
+                                fontFamily: 'NanumGothic',
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ),
+
+              // Expanded(
+              //   child: Container(
+              //     height: 80,
+              //     color: const Color(0xff2b2b2b),
+              //     margin: const EdgeInsets.only(bottom: 1),
+              //     child: ListTile(
+              //       dense: true,
+              //       contentPadding: const EdgeInsets.all(0),
+              //       title: Text(entries[index],
+              //         style: const TextStyle(
+              //           color: Colors.white,
+              //           fontSize: 14,
+              //           fontFamily: 'NanumGothic',
+              //         ),
+              //       ),
+              //       subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 11,color: Colors.white70,fontFamily: 'NanumGothic',),),
+              //       trailing: Row(
+              //         mainAxisSize: MainAxisSize.min,
+              //         children: [
+              //           IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+              //           IconButton(onPressed: () {}, icon: const Icon(Icons.delete)),
+              //           Column(
+              //             mainAxisSize: MainAxisSize.max,
+              //             children: [
+              //               Container(
+              //                 width: 30,
+              //                 height: 40,
+              //                 color: Colors.grey,
+              //                 child: Padding(
+              //                   padding: const EdgeInsets.all(0),
+              //                   child: Column(
+              //                     children: const [
+              //                       Text('1'),
+              //                     ],
+              //                   ),
+              //                 ),
+              //               ),
+              //             ],
+              //           )
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
               Container(
                 width: 20,
                 height: 81,
@@ -262,13 +395,15 @@ class _MyAppSpace extends StatelessWidget {
                   fit: StackFit.expand,
                   children: [
                     Container(
-                      padding: const EdgeInsets.only(left: 10, bottom: 10),
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('images/volvo.png'),
+                          image: AssetImage('images/top_bg.png'),
                           fit: BoxFit.cover,
                         ),
                       ),
+                    ),
+                    Container(
+                      color: Colors.black38,
                     ),
                     Positioned(
                       top: 80,
@@ -300,7 +435,6 @@ class _MyAppSpace extends StatelessWidget {
                                       color: Colors.white,
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
-                                      height: 1.0,
                                       fontFamily: 'NanumGothic',
                                   ),
                                 ),

@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
         color: const Color(0xff3a3041),
         shape: const CircularNotchedRectangle(),
         child: SizedBox(
-          height: 40,
+          height: 50,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Row(
