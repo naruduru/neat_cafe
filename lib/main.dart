@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: const Home(),
       bottomNavigationBar: BottomAppBar(
-        color: const Color(0xff3a3041),
+        color: const Color(0xfff53755),
         shape: const CircularNotchedRectangle(),
         child: SizedBox(
           height: 50,
