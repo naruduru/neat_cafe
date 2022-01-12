@@ -13,7 +13,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     '가마보코 내년에 살수있을까요??',
     '조용한 시간에~~짬짜미..',
     '가마보코3m 폴대문의',
-    '원터치 TC타프 사용하시는 회원분들께 질문 드립니다',
+    '원터치 TC타프 사용하시는 회원분들께 질문 드립니다 원터치 TC타프 사용하시는 회원분들께 질문 드립니다 원터치 TC타프 사용하시는 회원분들께 질문 드립니다 원터치 TC타프 사용하시는 회원분들께 질문 드립니다 원터치 TC타프 사용하시는 회원분들께 질문 드립니다 원터치 TC타프 사용하시는 회원분들께 질문 드립니다',
     '안녕하세요!',
     '가마보코 내년에 살수있을까요??',
     '조용한 시간에~~짬짜미..',
@@ -147,7 +147,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           SliverAppBar(
             toolbarHeight: 40,
             backgroundColor: const Color(0xfff53755),
-            elevation: 0.0,
             leading: IconButton(
               icon: const Icon(Icons.menu),
               onPressed: () {
@@ -227,13 +226,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   buildList() {
     return SliverList(delegate: SliverChildBuilderDelegate((context, index) =>
         Container(
-          height: 80,
-          color: const Color(0xff767676),
+          color: const Color(0xff2b2b2b),
           child: Row(
             children: [
               Container(
                 width: 20,
-                height: 81,
                 color: const Color(0xff2b2b2b),
               ),
               Expanded(
@@ -311,54 +308,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ),
                 ),
               ),
-
-              // Expanded(
-              //   child: Container(
-              //     height: 80,
-              //     color: const Color(0xff2b2b2b),
-              //     margin: const EdgeInsets.only(bottom: 1),
-              //     child: ListTile(
-              //       dense: true,
-              //       contentPadding: const EdgeInsets.all(0),
-              //       title: Text(entries[index],
-              //         style: const TextStyle(
-              //           color: Colors.white,
-              //           fontSize: 14,
-              //           fontFamily: 'NanumGothic',
-              //         ),
-              //       ),
-              //       subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 11,color: Colors.white70,fontFamily: 'NanumGothic',),),
-              //       trailing: Row(
-              //         mainAxisSize: MainAxisSize.min,
-              //         children: [
-              //           IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
-              //           IconButton(onPressed: () {}, icon: const Icon(Icons.delete)),
-              //           Column(
-              //             mainAxisSize: MainAxisSize.max,
-              //             children: [
-              //               Container(
-              //                 width: 30,
-              //                 height: 40,
-              //                 color: Colors.grey,
-              //                 child: Padding(
-              //                   padding: const EdgeInsets.all(0),
-              //                   child: Column(
-              //                     children: const [
-              //                       Text('1'),
-              //                     ],
-              //                   ),
-              //                 ),
-              //               ),
-              //             ],
-              //           )
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
               Container(
                 width: 20,
-                height: 81,
                 color: const Color(0xff2b2b2b),
               ),
             ],

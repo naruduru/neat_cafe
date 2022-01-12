@@ -47,7 +47,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavBar(),
+      drawerScrimColor: Colors.transparent,
+      drawer:
+        Container(
+        color: const Color(0xff3a3041),
+        width: MediaQuery.of(context).size.width * 0.8,
+        child: const NavBar(),
+      ),
       body: const Home(),
       bottomNavigationBar: BottomAppBar(
         color: const Color(0xff3a3041),
