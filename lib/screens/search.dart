@@ -9,7 +9,16 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
 
-  final List<String> entries = <String>['123','123', '123','923','123','123','123','123','123','923','123','123'];
+  final List<String> entries = <String>[
+    '가마보코',
+    '텐트',
+    '타케노코',
+    '타케노코2',
+    '공구',
+    '텐트',
+    '타케노코',
+    '타케노코2',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +58,13 @@ class _SearchState extends State<Search> {
                           filled : true,
                           fillColor: const Color(0xff2b2b2b),
                           hintText: '검색어 입력',
-                          hintStyle : const TextStyle(color: Color(0xff767676), fontFamily: 'NanumGothic',),
+                          hintStyle : const TextStyle(color: Colors.white70, fontFamily: 'NanumGothic',),
                           suffixIcon: IconButton(
                             padding: EdgeInsets.zero, // 패딩 설정
                             constraints: const BoxConstraints(), // constraints
                             color: Colors.blue,
                             alignment: Alignment.centerRight,
-                            icon: const Icon(Icons.cancel, size: 20, color: Color(0xff767676)),
+                            icon: const Icon(Icons.cancel, size: 20, color: Colors.white70),
                             onPressed: () { },
                           ),
                           contentPadding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -89,24 +98,76 @@ class _SearchState extends State<Search> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          const Text('헤더1'),
-          SingleChildScrollView(
-            child: ListView.separated(
-              shrinkWrap: true,
-              itemCount: entries.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  padding: const EdgeInsets.all(5),
-                  child: Text(entries[index]),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) => const Divider(),
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Color(0xff2b2b2b),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              color: const Color(0xff2b2b2b),
+              child: const Padding(
+                padding: EdgeInsets.only(left: 15, top: 20, right: 15, bottom: 5),
+                child: Text('최근검색어', style: TextStyle(fontSize: 12, color: Colors.white70, fontFamily: 'NanumGothic',)),
+              ),
             ),
-          ),
-          const Text('헤더2'),
-        ],
+            Flexible(
+              child: Container(
+                color: const Color(0xff2b2b2b),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16, top: 0, right: 16, bottom: 0),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: entries.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        decoration: const BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              width: 1,
+                              color: Color(0xff767676)
+                            ),
+                          ), // This will create top borders for the rest
+                        ),
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(0),
+                          dense: true,
+                          title: Text(entries[index], style: const TextStyle(fontSize: 16, color: Colors.white, fontFamily: 'NanumGothic',)),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.clear, color: Colors.white70,),
+                            onPressed: () {
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                child: Container(
+                    color: const Color(0xff2b2b2b),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 15, top: 10, right: 15, bottom: 10),
+                      child: Text('전체삭제 | 자동저장 끄기', style: TextStyle(fontSize: 12, color: Colors.white70, fontFamily: 'NanumGothic',)),
+                    ),
+                  ),
+                ),
+                Container(
+                  color: const Color(0xff2b2b2b),
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 15, top: 10, right: 15, bottom: 10),
+                    child: Text('닫기', style: TextStyle(fontSize: 12, color: Colors.white70, fontFamily: 'NanumGothic',)),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
