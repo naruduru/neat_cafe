@@ -9,12 +9,12 @@ class PersonAdd extends StatefulWidget {
 
 class _PersonAddState extends State<PersonAdd> {
   List<Choice> choices = <Choice>[
-    Choice(title: '카카오톡', icon: Icons.home),
-    Choice(title: '문자', icon: Icons.messenger),
-    Choice(title: '이메일', icon: Icons.email_outlined),
-    Choice(title: '네이버 ID', icon: Icons.phone),
-    Choice(title: '초대링크', icon: Icons.link),
-    Choice(title: 'QR 코드', icon: Icons.qr_code),
+    Choice(title: '카카오톡', type: 'image', imageIcon: 'images/kakaotalk_icon.png', color: const Color.fromRGBO(250, 226, 60, 1.0)),
+    Choice(title: '문자', type: 'icon', imageIcon: '', icon: Icons.message, color: Colors.cyan),
+    Choice(title: '이메일', type: 'icon', imageIcon: '', icon: Icons.email, color: Colors.orange),
+    Choice(title: '네이버 ID', type: 'image', imageIcon: 'images/naver_icon.png', color: const Color.fromRGBO(77, 77, 77, 1.0)),
+    Choice(title: '초대링크', type: 'icon', imageIcon: '', icon: Icons.link, color: const Color.fromRGBO(77, 77, 77, 1.0)),
+    Choice(title: 'QR 코드', type: 'icon', imageIcon: '', icon: Icons.qr_code, color: const Color.fromRGBO(77, 77, 77, 1.0)),
   ];
 
   @override
@@ -44,7 +44,6 @@ class _PersonAddState extends State<PersonAdd> {
           color: Color(0xff2b2b2b),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               alignment: Alignment.center,
@@ -54,7 +53,7 @@ class _PersonAddState extends State<PersonAdd> {
                 child: Text('새로운 멤버들을 초대해보세요!', style: TextStyle(fontSize: 12, color: Colors.white, fontFamily: 'NanumGothic',)),
               ),
             ),
-            Flexible(
+            Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: 80, top: 10, right: 80, bottom: 10),
                 child: GridView.builder(
@@ -69,18 +68,24 @@ class _PersonAddState extends State<PersonAdd> {
                             children: [
                               Center(
                                 child: Card(
-                                  color: const Color.fromRGBO(77, 77, 77, 1.0),
+                                  color: choices[position].color,
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(40.0)
+                                    borderRadius: BorderRadius.circular(30.0)
                                   ),
-                                  elevation: 5,
+                                  elevation: 1,
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Icon(
+                                    padding: choices[position].type == "icon" ? const EdgeInsets.all(10.0) : const EdgeInsets.all(6.0),
+                                    child: choices[position].type == "icon" ?
+                                    Icon(
                                       choices[position].icon,
-                                      size: 40,
+                                      size: 30,
                                       color: Colors.white,
-                                    ),
+                                    ) :
+                                    CircleAvatar(
+                                      backgroundImage: AssetImage(choices[position].imageIcon),
+                                      backgroundColor: Colors.transparent,
+                                      radius: 19,
+                                    )
                                   ),
                                 ),
                               ),
@@ -105,6 +110,23 @@ class _PersonAddState extends State<PersonAdd> {
                 ),
               ),
             ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              color: const Color(0xff2b2b2b),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text('영리 목적의 광고를 전송하면 정보통신망법에 따라 처벌 받을 수 있습니다.', style: TextStyle(fontSize: 10, color: Colors.white70, fontFamily: 'NanumGothic',)),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text('자세히 보기 >', style: TextStyle(fontSize: 10, color: Colors.white, fontFamily: 'NanumGothic',)),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -114,7 +136,10 @@ class _PersonAddState extends State<PersonAdd> {
 
 class Choice {
   final String title;
-  final IconData icon;
+  final String type; // icon, image
+  String imageIcon;
+  IconData? icon;
+  Color color;
 
-  Choice({required this.title, required this.icon});
+  Choice({required this.title, required this.type, required this.imageIcon, this.icon, required this.color});
 }
