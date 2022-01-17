@@ -8,7 +8,7 @@ class Noti extends StatefulWidget {
 }
 
 class _NotiState extends State<Noti> {
-  bool isSwitched = false;
+  bool _isSwitched = false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,106 +35,194 @@ class _NotiState extends State<Noti> {
       body: Container(
         color: const Color(0xff2b2b2b),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
           child: ListView(
             children: [
-              const ListTile(
-                title: Text('내소식에서 확인할 알림을 설정하세요.', style: TextStyle(fontSize: 12.0, color: Colors.white, fontFamily: 'NanumGothic'),),
-              ),
-              const Text('내 글의 댓글', style: TextStyle(fontSize: 12.0, color: Colors.white, fontFamily: 'NanumGothic'),
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Container(
+                  height: 20,
+                  alignment: Alignment.bottomLeft,
+                  child: const Text('내소식에서 확인할 알림을 설정하세요.', style: TextStyle(fontSize: 12.0, color: Colors.white, fontFamily: 'NanumGothic'),),
+                ),
               ),
               Container(
-                padding: const EdgeInsets.all(0),
                 height: 40,
-                color: Colors.red,
-                child: ListTile(
-                  contentPadding: const EdgeInsets.all(0),
-                  title: Container(color: Colors.deepPurple, child: const Text('댓글알림', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(width: 1, color: Color(0xff767676)),
                   ),
-                  trailing: const Text('내 글의 댓글', style: TextStyle(fontSize: 12.0, color: Colors.white, fontFamily: 'NanumGothic'),),
-                  onTap: () => { },
+                  color: Color(0xff2b2b2b),
+                ),
+                child: Row(
+                  children: const [
+                    Expanded(child: Text('댓글알림', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),),
+                    Text('내 글의 댓글', style: TextStyle(fontSize: 12.0, color: Colors.white, fontFamily: 'NanumGothic'),),
+                  ],
+                )
+              ),
+              Container(
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 1, color: Color(0xff767676)),
+                    ),
+                    color: Color(0xff2b2b2b),
+                  ),
+                  child: Row(
+                    children: const [
+                      Expanded(child: Text('관심글의 댓글', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),),
+                      Icon(Icons.chevron_right, color: Colors.white,),
+                    ],
+                  )
+              ),
+              Container(
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 1, color: Color(0xff767676)),
+                    ),
+                    color: Color(0xff2b2b2b),
+                  ),
+                  child: Row(
+                    children: [
+                      const Expanded(child: Text('공지알림', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),),
+                      Switch(
+                        activeColor: Colors.white,
+                        value: _isSwitched,
+                        onChanged: (bool value) {
+                          setState(() {
+                            _isSwitched = value;
+                          });
+                        },
+                      ),
+                    ],
+                  )
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Container(
+                height: 20,
+                alignment: Alignment.bottomLeft,
+                child: const Text('새글피드 구독 항목과 푸시알림을 설정하세요.', style: TextStyle(fontSize: 12.0, color: Colors.white, fontFamily: 'NanumGothic'),),
                 ),
               ),
-              const Divider(color: Color(0xff767676), thickness: 1,),
-              ListTile(
-                title: const Text('댓글알림', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),
-                trailing: const Text('내 글의 댓글', style: TextStyle(fontSize: 12.0, color: Colors.white, fontFamily: 'NanumGothic'),),
-                onTap: () => { },
+              Container(
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 1, color: Color(0xff767676)),
+                    ),
+                    color: Color(0xff2b2b2b),
+                  ),
+                  child: Row(
+                    children: const [
+                      Expanded(child: Text('키워드 새글', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),),
+                      Icon(Icons.chevron_right, color: Colors.white,),
+                    ],
+                  )
               ),
-              const Divider(color: Color(0xff767676), thickness: 1, ),
-              const ListTile(
-                title: Text('관심글의 댓글', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),
-                trailing: Icon(Icons.chevron_right, color: Colors.white,),
+              Container(
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 1, color: Color(0xff767676)),
+                    ),
+                    color: Color(0xff2b2b2b),
+                  ),
+                  child: Row(
+                    children: const [
+                      Expanded(child: Text('멤버 새글', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),),
+                      Icon(Icons.chevron_right, color: Colors.white,),
+                    ],
+                  )
               ),
-              const Divider(color: Color(0xff767676), thickness: 1,),
-              ListTile(
-                title: const Text('공지알림', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),
-                trailing: Switch(
-                  activeColor: Colors.white,
-                  value: isSwitched,
-                  onChanged: (bool value) {
-                    setState(() {
-                      isSwitched = value;
-                    });
-                  },
+              Container(
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 1, color: Color(0xff767676)),
+                    ),
+                    color: Color(0xff2b2b2b),
+                  ),
+                  child: Row(
+                    children: const [
+                      Expanded(child: Text('게시판 새글', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),),
+                      Icon(Icons.chevron_right, color: Colors.white,),
+                    ],
+                  )
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Container(
+                  height: 20,
+                  alignment: Alignment.bottomLeft,
+                  child: const Text('이 카페의 전체 푸시알림을 설정하세요.', style: TextStyle(fontSize: 12.0, color: Colors.white, fontFamily: 'NanumGothic'),),
                 ),
               ),
-              const Divider(color: Color(0xff767676),),
-              const ListTile(
-                title: Text('새글피드 구독 항목과 푸시알림을 설정하세요.', style: TextStyle(fontSize: 12.0, color: Colors.white, fontFamily: 'NanumGothic'),),
+              Container(
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 1, color: Color(0xff767676)),
+                    ),
+                    color: Color(0xff2b2b2b),
+                  ),
+                  child: Row(
+                    children: [
+                      const Expanded(child: Text('푸시알림 받기', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),),
+                      Switch(
+                        activeColor: Colors.white,
+                        value: _isSwitched,
+                        onChanged: (bool value) {
+                          setState(() {
+                            _isSwitched = value;
+                          });
+                        },
+                      ),
+                    ],
+                  )
               ),
-              const ListTile(
-                title: Text('키워드 새글', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),
-                trailing: Icon(Icons.chevron_right, color: Colors.white,),
+              Container(
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 1, color: Color(0xff767676)),
+                    ),
+                    color: Color(0xff2b2b2b),
+                  ),
+                  child: Row(
+                    children: const [
+                      Icon(Icons.chevron_right, color: Colors.white,),
+                      Expanded(child: Text('댓글 푸시알림', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),),
+                      Text('내 글의 댓글', style: TextStyle(fontSize: 12.0, color: Colors.white, fontFamily: 'NanumGothic'),),
+                    ],
+                  )
               ),
-              const Divider(color: Color(0xff767676),),
-              const ListTile(
-                title: Text('멤버 새글', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),
-                trailing: Icon(Icons.chevron_right, color: Colors.white,),
-              ),
-              const Divider(color: Color(0xff767676),),
-              const ListTile(
-                title: Text('게시판 새글', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),
-                trailing: Icon(Icons.chevron_right, color: Colors.white,),
-              ),
-              const Divider(color: Color(0xff767676),),
-              const ListTile(title: Text('이 카페의 전체 푸시알림을 설정하세요.', style: TextStyle(fontSize: 12.0, color: Colors.white, fontFamily: 'NanumGothic'),),),
-              ListTile(
-                title: const Text('푸시알림 받기', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),
-                trailing: Switch(
-                  value: isSwitched,
-                  onChanged: (bool value) {
-                    setState(() {
-                      isSwitched = value;
-                    });
-                  },
+              Container(
+                height: 40,
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(width: 1, color: Color(0xff767676)),
+                  ),
+                  color: Color(0xff2b2b2b),
                 ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.chevron_right, color: Colors.white,),
+                    const Expanded(child: Text('새글 푸시알림', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),),
+                    Switch(
+                      activeColor: Colors.white,
+                      value: _isSwitched,
+                      onChanged: (bool value) {
+                        setState(() {
+                          _isSwitched = value;
+                        });
+                      },
+                    ),
+                  ],
+                )
               ),
-              const Divider(color: Color(0xff767676),),
-              ListTile(
-                horizontalTitleGap: 0,
-                minLeadingWidth: 0,
-                leading: const Icon(Icons.chevron_right, color: Colors.white,),
-                title: const Text('댓글 푸시알림', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic'),),
-                trailing: const Text('내 글의 댓글', style: TextStyle(fontSize: 12.0, color: Colors.white, fontFamily: 'NanumGothic'),),
-                onTap: () {},
-              ),
-              const Divider(color: Color(0xff767676),),
-              ListTile(
-                horizontalTitleGap: 0,
-                minLeadingWidth: 0,
-                leading: const Icon(Icons.chevron_right, color: Colors.white,),
-                title: const Text('새글 푸시알림', style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'NanumGothic', fontWeight: FontWeight.bold),),
-                trailing: Switch(
-                  value: isSwitched,
-                  onChanged: (bool value) {
-                    setState(() {
-                      isSwitched = value;
-                    });
-                  },
-                ),
-              ),
-              const Divider(color: Color(0xff767676),),
             ],
           ),
         ),
